@@ -1,4 +1,4 @@
 automate==0.9
 automate_wsgi==0.9
-django==1.7
+django==1.8
 django-crispy-forms==1.4.0
