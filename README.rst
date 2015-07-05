@@ -1,15 +1,5 @@
 Web user interface for Automate
 ===============================
 
-Introduction
-------------
-
-Install instructions
---------------------
-
-Set up in Automate application
-------------------------------
-
-Usage
------
+See documentation at http://tuomasairaksinen.fi/automate/official_extensions/webui.html
 
