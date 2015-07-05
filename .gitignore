@@ -1,2 +1,4 @@
 /automate_webui.egg-info/
 *.pyc
+/build/
+/dist/
