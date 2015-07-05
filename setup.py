@@ -11,7 +11,7 @@ def get_version(filename):
         return metadata['version']
 
 setupopts = dict(
-    name="automate_webui",
+    name="automate-webui",
     version=get_version('automate_webui/__init__.py'),
     packages=find_packages(),
 
