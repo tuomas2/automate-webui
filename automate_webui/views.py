@@ -118,8 +118,9 @@ def get_views(service):
     @require_login
     def plantuml(request):
         puml_service = service.system.request_service('PlantUMLService')
-        return render(request, 'views/plantuml.html', {'source': 'system', 'arrow_colors': puml_service.arrow_colors,
-                                                       'background_colors': puml_service.background_colors})
+        return render(request, 'views/plantuml.html', {'source': 'system',
+                                                       'puml_service': puml_service,
+                                                       })
 
     @route('^system$')
     @require_login
