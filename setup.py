@@ -30,7 +30,7 @@ setupopts = dict(
                      "monitoring and modifying Automate system and its components.",
     license="GPL",
     keywords="automation, GPIO, Raspberry Pi, RPIO, traits",
-    url="http://github.com/tuomas2/automate_webui",
+    url="http://github.com/tuomas2/automate-webui",
     entry_points={'automate.extension': ['webui = automate_webui:extension_classes']},
 
     classifiers=["Development Status :: 4 - Beta",
