@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 
 from setuptools import setup, find_packages
-from pip.req import parse_requirements
-install_reqs = parse_requirements('requirements.pip')
 
 def get_version(filename):
     import re
@@ -15,7 +13,11 @@ setupopts = dict(
     version=get_version('automate_webui/__init__.py'),
     packages=find_packages(),
 
-    install_requires=[str(ir.req) for ir in install_reqs],
+    install_requires=[
+        'automate==0.9.1',
+        'automate-wsgi==0.9.1',
+        'django==1.8',
+        'django-crispy-forms==1.4.0'],
 
     package_data={
         '': ['*.txt', "*.md", "*.html", "*.css", "bootstrap.*", "*.js", "glyphicons*"],
