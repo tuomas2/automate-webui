@@ -26,8 +26,7 @@ setupopts = dict(
     author="Tuomas Airaksinen",
     author_email="tuomas.airaksinen@gmail.com",
     description="Web User Interface for Automate",
-    long_description="Automate Web UI extension provides easy to use approach to "
-                     "monitoring and modifying Automate system and its components.",
+    long_description=open('README.rst').read(),
     license="GPL",
     keywords="automation, GPIO, Raspberry Pi, RPIO, traits",
     url="http://github.com/tuomas2/automate-webui",
