@@ -2,7 +2,8 @@ Web user interface for Automate
 ===============================
 
 Automate is a general purpose Python automatization library.
-See documentation at http://tuomasairaksinen.fi/automate/docs/official_extensions/webui.html
+See documentation at
+http://python-automate.readthedocs.org/en/latest/official_extensions/webui.html
 
 Licence
 -------
