@@ -26,6 +26,19 @@ Automate system and its components. Features:
 See full documentation and screenshots at
 `Readthedocs.org <http://python-automate.readthedocs.org/en/latest/official_extensions/webui.html>`_.
 
+Installation
+------------
+
+Install from Pypi::
+
+    pip install automate-webui
+
+Optionally, you could install also by cloning GIT repository and installing manually::
+
+    git clone https://github.com/tuomas2/automate-webui.git
+    cd automate-webui
+    ./setup.py install
+
 Licence
 -------
 
