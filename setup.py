@@ -14,8 +14,8 @@ setupopts = dict(
     packages=find_packages(),
 
     install_requires=[
-        'automate==0.9.1',
-        'automate-wsgi==0.9.1',
+        'automate>=0.9.2,<=0.10',
+        'automate-wsgi>=0.9.2,<=0.10',
         'django==1.8',
         'django-crispy-forms==1.4.0'],
 
