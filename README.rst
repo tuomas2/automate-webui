@@ -1,7 +1,7 @@
 Web User Interface for Automate
 ===============================
 
-`Automate <http://github.com/tuomas/automate>`_ is a general purpose Python automatization library.
+`Automate <http://github.com/tuomas2/automate>`_ is a general purpose Python automatization library.
 
 Automate Web UI extension provides easy to use approach to monitoring and modifying
 Automate system and its components. Features:
