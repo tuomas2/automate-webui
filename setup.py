@@ -17,7 +17,7 @@ setupopts = dict(
         'automate>=0.9.2,<0.10',
         'automate-wsgi>=0.9.2,<0.10',
         'django>=1.8,<1.9',
-        'django-crispy-forms==1.4.0'],
+        'django-crispy-forms>=1.4,<1.5'],
 
     package_data={
         '': ['*.txt', "*.md", "*.html", "*.css", "bootstrap.*", "*.js", "glyphicons*"],
