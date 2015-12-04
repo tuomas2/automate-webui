@@ -169,7 +169,7 @@ def get_views(service):
         gitems = sorted(groups.items())
         l = len(gitems)
         g1 = gitems[:int(l/3) + 1]
-        g2 = gitems[int(l/3) + 1:2 * l / 3 + 1]
+        g2 = gitems[int(l/3) + 1:2 * int(l/3) + 1]
         g3 = gitems[2 * int(l/3) + 1:]
         return render(request, 'views/tag_view.html' if not template else template,
                       {'source': 'user_editable_view' if only_user_editable else 'tag_view', 'groups': [g1, g2, g3]})
