@@ -21,6 +21,7 @@
 # If you like Automate, please take a look at this page:
 # http://python-automate.org/gospel/
 
+from __future__ import division
 import re
 import keyword
 
@@ -89,7 +90,7 @@ class NumericQuickEdit(QuickEdit):
             if self.num_type is int:
                 field.step = 1
             else:
-                field.step = (sensor.value_max - sensor.value_min) / 10000.
+                field.step = int((sensor.value_max - sensor.value_min)/10000.)
 
             self.helper.layout = Layout('name', Field('status', template='slider.html'))
         else:
@@ -113,7 +114,7 @@ class StrQuickEdit(QuickEdit):
 class BoolQuickEdit(QuickEdit):
     status = forms.BooleanField()
 
-QUICK_EDITS = dict(unicode=StrQuickEdit, str=StrQuickEdit, int=IntQuickEdit, float=FloatQuickEdit, bool=BoolQuickEdit)
+QUICK_EDITS = dict(str=StrQuickEdit, int=IntQuickEdit, float=FloatQuickEdit, bool=BoolQuickEdit)
 
 
 class BaseForm(forms.Form):
@@ -176,7 +177,7 @@ class SystemObjectForm(BaseForm):
 
     def save(self, objname):
         obj = self.get_object(objname)
-        for key, value in self.cleaned_data.iteritems():
+        for key, value in self.cleaned_data.items():
             if key in self.changed_data:
                 if key == 'new_tags':
                     for tag in value.split(','):
@@ -218,7 +219,7 @@ class SystemObjectForm(BaseForm):
             self.obj = obj = self.system.namespace[objname]
             self.instance = obj
             self.fields['tags'].initial = list(obj.tags)
-            for key, value in self.fields.iteritems():
+            for key, value in self.fields.items():
                 if value.initial is None:
                     value.initial = getattr(obj, key)
 
@@ -307,7 +308,7 @@ class StatusObjectForm(ProgramForm):
 
     @property
     def types(self):
-        return sorted([key for key, value in self.module.__dict__.iteritems()
+        return sorted([key for key, value in self.module.__dict__.items()
                        if isinstance(value, type) and issubclass(value, self.abstract_class) and not key.startswith('Abstract')])
 
 

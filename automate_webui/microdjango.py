@@ -26,6 +26,7 @@
     Module to allow using Django like a microframework.
 
 """
+from builtins import object
 
 import sys
 import os
@@ -51,7 +52,7 @@ def route(urlstr, *args, **kwargs):
 
 def setup_django(**kwargs):
     if not settings.configured:
-        class DummyModule:
+        class DummyModule(object):
             pass
         mymod = DummyModule()
         mymod.urlpatterns = []
