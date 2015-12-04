@@ -21,6 +21,8 @@
 # If you like Automate, please take a look at this page:
 # http://python-automate.org/gospel/
 
+from __future__ import print_function
+from __future__ import absolute_import
 import threading
 from django.contrib import messages
 
@@ -30,8 +32,8 @@ from django.shortcuts import render
 from django.template import Template, RequestContext
 from django.utils.http import urlencode
 from django.utils.safestring import mark_safe
-from microdjango import route
-from forms import LoginForm, CmdForm, FORMTYPES, QUICK_EDITS, TextForm
+from .microdjango import route
+from .forms import LoginForm, CmdForm, FORMTYPES, QUICK_EDITS, TextForm
 from functools import wraps
 from automate.statusobject import AbstractActuator
 from automate.statusobject import AbstractSensor
@@ -320,7 +322,7 @@ def get_views(service):
             status = request.POST.get('status', None)
             obj = service.system.namespace.get(name, None)
             if obj:
-                print request.POST
+                service.logger.debug('POST: %s', request.POST)
                 form = QUICK_EDITS[obj.data_type](request.POST, sensor=obj)
                 if form.is_valid():
                     obj.status = form.cleaned_data['status']
