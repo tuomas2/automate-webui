@@ -26,6 +26,7 @@
     Module to allow using Django like a microframework.
 
 """
+from __future__ import unicode_literals
 from builtins import object
 
 import sys
