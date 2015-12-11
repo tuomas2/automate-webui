@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-from __future__ import unicode_literals
 from setuptools import setup, find_packages
 
 def get_version(filename):
