@@ -115,7 +115,7 @@ class StrQuickEdit(QuickEdit):
 class BoolQuickEdit(QuickEdit):
     status = forms.BooleanField()
 
-QUICK_EDITS = dict(str=StrQuickEdit, int=IntQuickEdit, float=FloatQuickEdit, bool=BoolQuickEdit)
+QUICK_EDITS = dict(str=StrQuickEdit, unicode=StrQuickEdit, int=IntQuickEdit, float=FloatQuickEdit, bool=BoolQuickEdit)
 
 
 class BaseForm(forms.Form):
