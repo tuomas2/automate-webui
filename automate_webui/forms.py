@@ -91,7 +91,7 @@ class NumericQuickEdit(QuickEdit):
             if self.num_type is int:
                 field.step = 1
             else:
-                field.step = int((sensor.value_max - sensor.value_min)/10000.)
+                field.step = (sensor.value_max - sensor.value_min)/10000.
 
             self.helper.layout = Layout('name', Field('status', template='slider.html'))
         else:
