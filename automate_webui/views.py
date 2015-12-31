@@ -252,7 +252,6 @@ def get_views(service):
         if not obj or service.read_only:
             raise Http404
         new_status = obj.status = not obj.status
-        service.system.flush()
         return render(request, 'views/toggle.html', {'name': name, 'status': new_status})
 
     @route(r'^set/(\w*)/(\w*)$')
@@ -265,7 +264,6 @@ def get_views(service):
         if not obj or service.read_only:
             raise Http404
         obj.status = value
-        service.system.flush()
         return render(request, 'views/toggle.html', {'name': name, 'status': value})
 
     @route(r'^edit/(\w*)$')
