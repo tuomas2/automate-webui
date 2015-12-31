@@ -17,7 +17,9 @@
     <script src="{% static "jquery.min.js" %}"></script>
     <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
     <script src="{% static "bootstrap/js/bootstrap-slider.js" %}"></script>
+    {% block jsscripts %}
     <script src="{% static "scripts.js" %}"></script>
+    {% endblock %}
     <!-- Custom styles for this template -->
     <link href="{% static "style.css" %}" rel="stylesheet">
     <script>
