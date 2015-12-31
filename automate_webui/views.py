@@ -230,6 +230,9 @@ def get_views(service):
     @route('^toggle_sensor/(\w*)$')
     @require_login
     def toggle_sensor(request, sensorname):
+        """
+        This is used only if websocket fails
+        """
         if service.read_only:
             service.logger.warning("Could not perform operation: read only mode enabled")
             raise Http404
@@ -238,6 +241,32 @@ def get_views(service):
         sensor.status = not sensor.status
         service.system.flush()
         return HttpResponseRedirect(reverse(source))
+
+    @route(r'^toggle/(\w*)$')
+    @require_login
+    def toggle_value(request, name):
+        """
+        For manual shortcut links to perform toggle actions
+        """
+        obj = service.system.namespace.get(name, None)
+        if not obj or service.read_only:
+            raise Http404
+        new_status = obj.status = not obj.status
+        service.system.flush()
+        return render(request, 'views/toggle.html', {'name': name, 'status': new_status})
+
+    @route(r'^set/(\w*)/(\w*)$')
+    @require_login
+    def set_value(request, name, value):
+        """
+        For manual shortcut links to perform set value actions
+        """
+        obj = service.system.namespace.get(name, None)
+        if not obj or service.read_only:
+            raise Http404
+        obj.status = value
+        service.system.flush()
+        return render(request, 'views/toggle.html', {'name': name, 'status': value})
 
     @route(r'^edit/(\w*)$')
     @require_login
