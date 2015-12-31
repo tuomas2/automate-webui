@@ -9,8 +9,8 @@
     <div class="row">
         {% for group in groups %}
             <div class="col-md-4 object_list_column">
-                {% for groupname, objs in group %}
-                    <div class="group_title">{{ groupname }}</div>
+                {% for tag, objs in group %}
+                    <div class="group_title"><a href="{%url "single_tag" tag %}">{{ tag }}</a></div>
                     <div class="group_content">
                         <hr class='object_row'>
                         {% for obj in objs %}
@@ -29,8 +29,6 @@
                 {% endfor %}
             </div>
         {% endfor %}
-
-
     </div>
 {% endblock %}
 

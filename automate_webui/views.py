@@ -52,7 +52,7 @@ def common_context(request):
     views = [
         ('By types', 'system'),
         ('By groups', 'tag_view_only_groups'),
-        ('By tags', 'tag_view'),
+        ('By tags', 'tags_view'),
         ('User editable', 'user_editable_view'),
         ('User defined', 'user_defined_view'),
     ]
@@ -143,9 +143,19 @@ def get_views(service):
         threads.sort()
         return render(request, 'views/threads.html', {'threads': threads})
 
-    @route('^tag_view$')
+    @route('^tag/([\w:]*)')
     @require_login
-    def tag_view(request, template='', only_user_editable=False, only_user_defined=False, only_groups=False):
+    def single_tag(request, tag):
+        objs = sorted([obj for obj in service.system.objects_sorted if tag in obj.tags])
+        if not objs:
+            raise Http404
+        return render(request, 'views/single_tag_view.html',
+                      {'source': 'tags_view', 'objs': objs, 'tag': tag})
+
+
+    @route('^tag$')
+    @require_login
+    def tags_view(request, template='', only_user_editable=False, only_user_defined=False, only_groups=False):
         groups = {}
         if only_user_editable:
             objs = (i for i in service.system.objects_sorted if getattr(i, 'user_editable', False))
@@ -156,11 +166,8 @@ def get_views(service):
         for obj in objs:
             for tag in obj.tags:
                 if only_groups:
-                    if tag.startswith('group:'):
-                        tag = tag[6:]
-                    else:
+                    if not tag.startswith('group:'):
                         continue
-                tag = tag.replace(':', '_').capitalize()
                 if tag in groups:
                     groups[tag].append(obj)
                 else:
@@ -172,22 +179,22 @@ def get_views(service):
         g2 = gitems[int(l/3) + 1:2 * int(l/3) + 1]
         g3 = gitems[2 * int(l/3) + 1:]
         return render(request, 'views/tag_view.html' if not template else template,
-                      {'source': 'user_editable_view' if only_user_editable else 'tag_view', 'groups': [g1, g2, g3]})
+                      {'source': 'user_editable_view' if only_user_editable else 'tags_view', 'groups': [g1, g2, g3]})
 
     @route('^user_editable_view$')
     @require_login
     def user_editable_view(request):
-        return tag_view(request, template='views/user_editable_view.html', only_user_editable=True)
+        return tags_view(request, template='views/user_editable_view.html', only_user_editable=True)
 
     @route('^user_defined_view$')
     @require_login
     def user_defined_view(request):
-        return tag_view(request, template='views/user_defined_view.html', only_groups=True, only_user_defined=True)
+        return tags_view(request, template='views/user_defined_view.html', only_groups=True, only_user_defined=True)
 
-    @route('^tag_view/only_groups$')
+    @route('^only_groups$')
     @require_login
     def tag_view_only_groups(request):
-        return tag_view(request, template='views/only_groups.html', only_groups=True)
+        return tags_view(request, template='views/only_groups.html', only_groups=True)
 
     @route('^info_panel/(\w*)')
     @require_login
