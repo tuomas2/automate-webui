@@ -86,7 +86,7 @@ def setup_django(**kwargs):
                                 'django.contrib.sessions.middleware.SessionMiddleware',
                                 'django.contrib.messages.middleware.MessageMiddleware',
                                 ],
-            SESSION_ENGINE="django.contrib.sessions.backends.cache",
+            SESSION_ENGINE="django.contrib.sessions.backends.file",
             CRISPY_TEMPLATE_PACK='bootstrap3',
             LOGGING = {  # set up logging such that log entries go to Automate logging
                 'version': 1,
