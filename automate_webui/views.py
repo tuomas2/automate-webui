@@ -252,7 +252,10 @@ def get_views(service):
         if not obj or service.read_only:
             raise Http404
         new_status = obj.status = not obj.status
-        return render(request, 'views/toggle.html', {'name': name, 'status': new_status})
+        if service.redirect_from_setters:
+            return HttpResponseRedirect(reverse('set_ready', args=(name, new_status)))
+        else:
+            return set_ready(request, name, new_status)
 
     @route(r'^set/(\w*)/(\w*)$')
     @require_login
@@ -264,6 +267,14 @@ def get_views(service):
         if not obj or service.read_only:
             raise Http404
         obj.status = value
+        if service.redirect_from_setters:
+            return HttpResponseRedirect(reverse('set_ready', args=(name, value)))
+        else:
+            return set_ready(request, name, value)
+
+    @route(r'^set_ready/(\w*)/(\w*)')
+    @require_login
+    def set_ready(request, name, value):
         return render(request, 'views/toggle.html', {'name': name, 'status': value})
 
     @route(r'^edit/(\w*)$')

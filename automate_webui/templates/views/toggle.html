@@ -7,6 +7,6 @@
     <h1>Status of {{name}} set to {{status}}</h1>
   {% endblock %}
   <br>
-     <a class="btn btn-warning" href="">Toggle again</a>
+     <a class="btn btn-warning" href="{% url 'toggle_value' name %}">Toggle value</a>
 {% endblock %}
 

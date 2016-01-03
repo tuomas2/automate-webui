@@ -86,6 +86,9 @@ class WebService(TornadoService):
     #: In this dictionary you can define your custom Django settings which will override the default ones
     django_settings = Dict()
 
+    # From /set/object/value and /toggle/object, redirect to /set_ready/object/value after after executing action
+    redirect_from_setters = CBool(True)
+
     _sockets = List
 
     def get_filehandler_class(service):
