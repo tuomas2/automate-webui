@@ -83,6 +83,9 @@ class WebService(TornadoService):
     #: are used from slave.
     slave = CBool(False)
 
+    #: In this dictionary you can define your custom Django settings which will override the default ones
+    django_settings = Dict()
+
     _sockets = List
 
     def get_filehandler_class(service):
@@ -114,7 +117,7 @@ class WebService(TornadoService):
 
     def setup(self):
         if not self.slave:
-            setup_django(DEBUG=self.debug)
+            setup_django(DEBUG=self.debug, **self.django_settings)
 
             from django.conf import settings
             settings.TEMPLATE_CONTEXT_PROCESSORS = settings.TEMPLATE_CONTEXT_PROCESSORS + \
