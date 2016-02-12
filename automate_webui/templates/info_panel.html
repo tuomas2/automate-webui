@@ -44,6 +44,30 @@
                 </div>
             </div>
         {% endif %}
+      {% if i.program_stack %}
+        <div class="panel panel-warning">
+          <div class="panel-heading">Controlling programs</div>
+          <div class="panel-body">
+            {% for p in i.program_stack reversed %}
+              <div class="row object_row request_panel" {% row_attrs p.name i.name %}>
+                <div class="col-xs-3">
+                  <a>
+                    {{ p.name }}
+                  </a>
+                  {{ s }}
+                </div>
+                <div class="col-xs-9 object_status_column">
+                  {% program_status i p %}
+                </div>
+              </div>
+
+              <div class='row collapse'>
+              </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
         {% block panelcontent %}
 
             {% if i.is_program %}
