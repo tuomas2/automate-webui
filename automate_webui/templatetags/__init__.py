@@ -19,4 +19,4 @@
 # ------------------------------------------------------------------
 #
 # If you like Automate, please take a look at this page:
-# http://python-automate.org/gospel/
+# http://evankelista.net/automate/
