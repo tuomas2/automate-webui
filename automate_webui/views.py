@@ -202,7 +202,7 @@ def get_views(service):
         source = request.GET.get('source', 'main')
         if request.is_ajax():
             obj = service.system.namespace[name]
-            view_items = obj.view[:] + ['class_name', 'data_type']
+            view_items = obj.view[:] + ['class_name', 'data_type', 'next_scheduled_action']
             if 'change_delay' in view_items and not obj.change_delay:
                 view_items.remove('change_delay')
                 view_items.remove('change_mode')
