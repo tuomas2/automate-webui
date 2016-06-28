@@ -168,7 +168,7 @@ class WebService(TornadoService):
                 else:
                     service.logger.warning("Not (yet) logged in %s", session_id)
 
-                service.logger.info("WebSocket opened for session %s", session_id)
+                service.logger.debug("WebSocket opened for session %s", session_id)
                 service._sockets.append(self)
 
             def _authenticate(self, username, password):
@@ -236,7 +236,7 @@ class WebService(TornadoService):
                 self.last_message = datetime.datetime.now()
 
             def on_close(self):
-                service.logger.info("WebSocket closed for session %s", self.session_id)
+                service.logger.debug("WebSocket closed for session %s", self.session_id)
                 service._sockets.remove(self)
 
         return WebSocket
